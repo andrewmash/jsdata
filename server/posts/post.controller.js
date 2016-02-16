@@ -11,7 +11,7 @@ module.exports = {
     .then(function(posts) {
       res.json(posts);
     })
-    .then(null, next)
+    .then(null, next);
   }, 
 
   show: function(req, res, next){
@@ -19,7 +19,7 @@ module.exports = {
     .then(function(post) {
       res.json(post);
     })
-    .then(null, next)
+    .then(null, next);
   },
 
   create: function(req, res, next){
@@ -27,14 +27,14 @@ module.exports = {
     .then(function(article) {
       res.json(article);
     })
-    .then(null, next)
+    .then(null, next);
   }, 
   destroy: function(req, res, next){
     Post.remove({_id: req.params.id})
     .then(function() {
       res.status(204).end()
     })
-    .then(null, next)
+    .then(null, next);
   }
 
-}
+};

@@ -2,15 +2,15 @@
 
 app.config(function($stateProvider) {
 
-	$stateProvider.state('signup', {
-		url: '/signup',
-		templateUrl: 'js/signup/signup.html',
-		controller: 'SignupCtrl'
-	})
-})
+    $stateProvider.state('signup', {
+        url: '/signup',
+        templateUrl: 'js/signup/signup.html',
+        controller: 'SignupCtrl'
+    });
+});
 
 // add necessary dependencies here
-app.controller('SignupCtrl', function($scope) {
+app.controller('SignupCtrl', function($scope, User, $stateParams, $state) {
 
 
   /*
@@ -20,7 +20,14 @@ app.controller('SignupCtrl', function($scope) {
       a) persists the user data 
       b) changes the state to  'create' while sending along important user data
       (HINT: $stateParams)
-
   */
+  $scope.sendSignup = function(signup) {
+      User.create({ username: signup.username, password: signup.password })
+          .then(function(user) {
+              $state.go('create', {
+                  userId: user._id
+              });
+          });
+      };
 
-})
+  });
